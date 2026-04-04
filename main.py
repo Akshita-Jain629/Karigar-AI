@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import uvicorn
-from routes import whatsapp, lessons, users, certificates
+from routes import whatsapp
 
 app = FastAPI(
     title="Karigar AI API",
@@ -19,9 +19,6 @@ app.add_middleware(
 )
 
 app.include_router(whatsapp.router, prefix="/webhook", tags=["WhatsApp"])
-app.include_router(lessons.router, prefix="/lessons", tags=["Lessons"])
-app.include_router(users.router, prefix="/users", tags=["Users"])
-app.include_router(certificates.router, prefix="/certificates", tags=["Certificates"])
 
 @app.get("/")
 def root():
